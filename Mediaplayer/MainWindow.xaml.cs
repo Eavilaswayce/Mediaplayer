@@ -36,6 +36,7 @@ namespace Media_Player
 
         private void thumb_MouseEnter(object sender, MouseEventArgs e)
         {
+            // I think this sends another mouse down event instantly to allow click and drag from anywhere on the slider track
             if (e.LeftButton == MouseButtonState.Pressed && e.MouseDevice.Captured == null)
             {
                 MouseButtonEventArgs args = new MouseButtonEventArgs(e.MouseDevice, e.Timestamp, MouseButton.Left);
