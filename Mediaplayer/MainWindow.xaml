@@ -1,0 +1,112 @@
+﻿<Window x:Class="Media_Player.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Media_Player"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        MinWidth="500"
+        MinHeight="450"
+        SizeToContent="WidthAndHeight">
+
+    <Grid
+        Background="#202020"
+        MouseEnter="ControlsMouseEnter"
+        MouseLeave="ControlsMouseLeave">
+        
+        <!-- Media player element -->
+        <MediaElement x:Name="mediaPlayer"
+                      LoadedBehavior="Manual"
+                      IsHitTestVisible="False"/>
+
+        <!-- Grid for footer -->
+        <Grid x:Name="controlsGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <!-- Current duration through media -->
+            <TextBlock x:Name="currentDuration"
+                       Margin="12,0,0,6"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Left"
+                       FontSize="14"
+                       Foreground="White"/>
+
+            <!-- Total duration of media -->
+            <TextBlock x:Name="totalDuration"
+                       Margin="0,0,12,6"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Right"
+                       FontSize="14"
+                       Foreground="White"/>
+
+            <!-- Seeker bar -->
+            <Slider x:Name="seekerBar"
+                    Grid.Row="1"
+                    Margin="8"
+                    VerticalAlignment="Bottom"
+                    IsMoveToPointEnabled="True"
+                    Thumb.DragStarted="seekerBarDragStarted"
+                    Thumb.DragCompleted="seekerBarDragCompleted"
+                    Style="{DynamicResource SliderStyle}"/>
+
+            <!-- Footer content -->
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Select media button -->
+                <Button x:Name="selectMedia"
+                        Click="selectMediaClick"
+                        Margin="8"
+                        Padding="2"
+                        Content="Select Media"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"/>
+
+                <!-- Pause Button -->
+                <Button x:Name="pauseMedia"
+                        Grid.Column="1"
+                        Click="pauseMediaClick"
+                        Margin="8"
+                        Padding="2"
+                        Content="Pause"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Visibility="Visible"/>
+
+                <!-- Play button -->
+                <Button x:Name="playMedia"
+                        Grid.Column="1"
+                        Click="playMediaClick"
+                        Margin="8"
+                        Padding="2"
+                        Content="Play"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Visibility="Hidden"/>
+
+                <!-- Volume bar -->
+                <Slider x:Name="volumeAdjust"
+                        Grid.Column="2"
+                        Width="150"
+                        Margin="8"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        IsMoveToPointEnabled="True"
+                        Maximum="1"
+                        Value="0.1"
+                        ValueChanged="volumeAdjustValueChanged"
+                        Style="{DynamicResource SliderStyle}"/>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
